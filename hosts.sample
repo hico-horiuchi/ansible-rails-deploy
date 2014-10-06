@@ -1,0 +1,7 @@
+[rails]
+localhost
+
+[rails:vars]
+repo=git@github.com:who/sample.git
+project=sample
+db_password=hogehoge
