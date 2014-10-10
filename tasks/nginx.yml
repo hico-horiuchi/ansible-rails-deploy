@@ -3,21 +3,25 @@
   command: test -f /etc/nginx/sites-enabled/unicorn
   register: test_nginx_unicorn
   ignore_errors: yes
+
 - name: remove nginx default setting
   command: rm /etc/nginx/sites-enabled/default
   sudo: yes
   when: test_nginx_unicorn|failed
+
 - name: copy nginx unicorn setting
-  command: cp {{dest}}/config/nginx.sample /etc/nginx/sites-available/unicorn
+  command: cp {{ dest }}/config/nginx.sample /etc/nginx/sites-available/unicorn
   sudo: yes
   when: test_nginx_unicorn|failed
+
 - name: edit nginx unicorn setting
   lineinfile:
     dest=/etc/nginx/sites-available/unicorn
-    regep='^\/path\/to\/{{project}}'
-    line={{dest}}
+    regep='^\/path\/to\/{{ project }}'
+    line={{ dest }}
   sudo: yes
   when: test_nginx_unicorn|failed
+
 - name: link nginx unicorn setting
   command: ln -s /etc/nginx/sites-available/unicorn /etc/nginx/sites-enabled/unicorn
   sudo: yes

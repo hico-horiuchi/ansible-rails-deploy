@@ -2,5 +2,5 @@
 - name: rake assets:clean assets:precompile
   command:
     bin/rake assets:clean assets:precompile
-    chdir={{dest}}
+    chdir={{ dest }}
   environment: env

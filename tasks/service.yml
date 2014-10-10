@@ -2,12 +2,14 @@
 - name: stop unicorn
   shell:
     bin/unicorn stop
-    chdir={{dest}}
+    chdir={{ dest }}
   ignore_errors: yes
+
 - name: start unicorn
   shell:
     bin/unicorn start
-    chdir={{dest}}
+    chdir={{ dest }}
+
 - name: restart nginx
   service:
     name=nginx

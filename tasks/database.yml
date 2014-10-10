@@ -1,41 +1,47 @@
 ---
 - name: test config/database.yml
-  command: test -f {{dest}}/config/database.yml
+  command: test -f {{ dest }}/config/database.yml
   register: test_config_database
   ignore_errors: yes
+
 - name: copy config/database.yml
   command:
     cp config/database.yml.sample config/database.yml
-    chdir={{dest}}
+    chdir={{ dest }}
   when: test_config_database|failed
+
 - name: remove _SAMPLE
   lineinfile:
-    dest={{dest}}/config/database.yml
-    regexp='^  database{{colon}} ad_pri_production_SAMPLE$'
-    line='  database{{colon}} ad_pri_production'
+    dest={{ dest }}/config/database.yml
+    regexp='^  database{{ colon }} ad_pri_production_SAMPLE$'
+    line='  database{{ colon }} ad_pri_production'
   when: test_config_database|failed
+
 - name: set database password
   lineinfile:
-    dest={{dest}}/config/database.yml
-    regexp="^  password{{colon}} <%= ENV\['AD_PRI_DATABASE_PASSWORD'\] %>$"
-    line='  password{{colon}} {{db_password}}'
+    dest={{ dest }}/config/database.yml
+    regexp="^  password{{ colon }} <%= ENV\['AD_PRI_DATABASE_PASSWORD'\] %>$"
+    line='  password{{ colon }} {{ db_password }}'
   when: test_config_database|failed
+
 - name: rake db:version
   command:
     bin/rake db:version
-    chdir={{dest}}
+    chdir={{ dest }}
   environment: env
   register: rake_db_version
   ignore_errors: yes
+
 - name: rake db:setup
   command:
     bin/rake db:setup
-    chdir={{dest}}
+    chdir={{ dest }}
   environment: env
   when: rake_db_version|failed
+
 - name: rake db:migrate
   command:
     bin/rake db:migrate
-    chdir={{dest}}
+    chdir={{ dest }}
   environment: env
   when: rake_db_version|success
