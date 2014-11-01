@@ -1,5 +1,6 @@
 ---
 - hosts: rails
+  gather_facts: no
   vars:
     dest: '{{ansible_env.HOME}}/{{project}}'
     colon: ':'
