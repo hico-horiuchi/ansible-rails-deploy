@@ -5,3 +5,5 @@ localhost
 repo=git@github.com:who/sample.git
 project=sample
 db_password=hogehoge
+hubot_host=http://hubot.example.com/
+hubot_room=1234
