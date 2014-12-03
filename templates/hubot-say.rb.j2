@@ -5,7 +5,7 @@ require 'json'
 
 host_name = `hostname`.chomp
 project = '{{ project }}'
-commit = `git log --pretty=format:"<%h> %s" | head -1`.chomp
+commit = `git log --pretty=format:"<%h> %s" | head -1`.chomp.force_encoding('utf-8')
 
 message = "( ´∀`)b #{host_name} に #{project} がデプロイされたよ!"
 message += "\n```\n#{commit}\n```"
