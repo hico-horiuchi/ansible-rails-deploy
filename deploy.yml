@@ -14,4 +14,4 @@
     - include: tasks/database.yml
     - include: tasks/assets.yml
     - include: tasks/service.yml
-    - include: tasks/hubot.yml
+    - include: tasks/typetalk.yml

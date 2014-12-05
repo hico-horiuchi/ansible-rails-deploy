@@ -5,5 +5,6 @@ localhost
 repo=git@github.com:who/sample.git
 project=sample
 db_password=hogehoge
-hubot_host=http://hubot.example.com/
-hubot_room=1234
+typetalk_client_id=abcdefghijklmnopqrstuvwxyz123456
+typetalk_client_secret=abcdefghijklmnopqrstuvwxyz123456789abcdefghijklmnopqrstuvwxyz123
+typetalk_topic=1234
