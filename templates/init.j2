@@ -1,0 +1,3 @@
+#!/bin/sh
+
+su {{ ansible_env.USER }} -c "{{ dest }}/bin/unicorn $1"

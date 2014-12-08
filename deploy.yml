@@ -1,11 +1,11 @@
 ---
 - hosts: rails
   vars:
-    dest: '{{ansible_env.HOME}}/{{project}}'
+    dest: '{{ ansible_env.HOME }}/{{ project }}'
     colon: ':'
     env:
       RAILS_ENV: production
-      PATH: '{{ansible_env.PATH}}'
+      PATH: '{{ ansible_env.PATH }}'
   tasks:
     - include: tasks/git.yml
     - include: tasks/bundle.yml
@@ -13,5 +13,6 @@
     - include: tasks/unicorn.yml
     - include: tasks/database.yml
     - include: tasks/assets.yml
+    - include: tasks/init.yml
     - include: tasks/service.yml
     - include: tasks/typetalk.yml

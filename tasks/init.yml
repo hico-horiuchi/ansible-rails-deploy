@@ -1,0 +1,11 @@
+---
+- name: copy init script
+  template:
+    src=templates/init.j2
+    dest=/etc/init.d/{{ project }}
+    mode=755
+  sudo: yes
+
+- name: add start up
+  command: update-rc.d {{ project }} defaults
+  sudo: yes
