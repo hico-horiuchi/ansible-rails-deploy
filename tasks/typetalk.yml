@@ -4,4 +4,4 @@
     client_id={{ typetalk_client_id }}
     client_secret={{ typetalk_client_secret }}
     topic={{ typetalk_topic }}
-    msg=':wink: {{ ansible_hostname }} に {{ project }} がデプロイされたよ!'
+    msg='{{ colon }}wink{{ colon }} {{ ansible_hostname }} に {{ project }} がデプロイされたよ!'
