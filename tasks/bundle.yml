@@ -1,6 +1,6 @@
 ---
 - name: bundle install
   command:
-    bundle install --jobs=4 --path=vendor/bundler --binstubs=vendor/bin --without doc test development
+    bundle install --jobs=4 --path=vendor/bundler --binstubs=vendor/bin --without doc test development --deployment
     chdir={{ dest }}
   environment: env

@@ -1,6 +1,6 @@
 ---
-- name: rake assets:clean assets:precompile
+- name: rake assets:clean assets:precompile cache:clear
   command:
-    bin/rake assets:clean assets:precompile
+    bin/rake assets:clean assets:precompile cache:clear
     chdir={{ dest }}
   environment: env
