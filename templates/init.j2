@@ -1,3 +1,5 @@
 #!/bin/sh
 
-su {{ ansible_env.USER }} -c "{{ dest }}/bin/unicorn $1"
+cd {{ dest }}
+su {{ ansible_env.USER }} -c "bin/rake sidekiq:$1"
+su {{ ansible_env.USER }} -c "bin/unicorn $1"
