@@ -1,13 +1,13 @@
 ---
 - name: stop sidekiq
   shell:
-    bin/rake sidekiq:stop
+    RAILS_ENV=production bin/rake sidekiq:stop
     chdir={{ dest }}
   ignore_errors: yes
 
 - name: start sidekiq
   shell:
-    bin/rake sidekiq:start
+    RAILS_ENV=production bin/rake sidekiq:start
     chdir={{ dest }}
 
 - name: stop unicorn
