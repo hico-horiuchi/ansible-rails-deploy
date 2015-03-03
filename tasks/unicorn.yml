@@ -1,20 +1,8 @@
 ---
-- name: test bin/unicorn
-  command:
-    test -f bin/unicorn
-    chdir={{ dest }}
-  register: test_bin_unicorn
-  ignore_errors: yes
-
 - name: copy bin/unicorn
-  command:
-    cp bin/unicorn.sample bin/unicorn
-    chdir={{ dest }}
-  when: test_bin_unicorn|failed
-
-- name: edit bin/unicorn
-  lineinfile:
+  template:
+    src=../bin/unicorn.j2
     dest={{ dest }}/bin/unicorn
-    regexp='^APP_ROOT=\/path\/to\/{{ project }}$'
-    line='APP_ROOT={{ dest }}'
-  when: test_bin_unicorn|failed
+    owner={{ ansible_env.USER }}
+    group={{ ansible_env.USER }}
+    mode=0755

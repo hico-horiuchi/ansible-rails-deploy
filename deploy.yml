@@ -6,6 +6,7 @@
     env:
       RAILS_ENV: production
       PATH: '{{ ansible_env.PATH }}'
+      SECRET_KEY_BASE: '{{ secret_key_base }}'
   tasks:
     - include: tasks/git.yml
     - include: tasks/bundle.yml

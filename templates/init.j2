@@ -1,6 +1,9 @@
 #!/bin/sh
 
 cd {{ dest }}
-su {{ ansible_env.USER }} -c "RAILS_ENV=production bin/rake sidekiq:$1"
-su {{ ansible_env.USER }} -c "RAILS_ENV=production bin/rake websocket_rails:$1_server"
-su {{ ansible_env.USER }} -c "bin/unicorn $1"
+
+ENVS="RAILS_ENV=production SECRET_KEY_BASE={{ secret_key_base }}"
+
+sudo -u  {{ ansible_env.USER }} -H ${ENVS} bundle exec rake sidekiq:${1}
+sudo -u  {{ ansible_env.USER }} -H ${ENVS} bundle exec rake websocket_rails:${1}_server
+sudo -u  {{ ansible_env.USER }} -H ${ENVS} bin/unicorn ${1}

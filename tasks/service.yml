@@ -1,28 +1,20 @@
 ---
-- name: stop sidekiq
-  shell:
-    RAILS_ENV=production bin/rake sidekiq:stop
-    chdir={{ dest }}
+- name: stop rails
+  service:
+    name={{ project }}
+    state=stopped
+  sudo: yes
   ignore_errors: yes
 
-- name: start sidekiq
-  shell:
-    RAILS_ENV=production bin/rake sidekiq:start
-    chdir={{ dest }}
-
-- name: stop unicorn
-  shell:
-    bin/unicorn stop
-    chdir={{ dest }}
-  ignore_errors: yes
-
-- name: start unicorn
-  shell:
-    bin/unicorn start
-    chdir={{ dest }}
+- name: start rails
+  service:
+    name={{ project }}
+    state=started
+  sudo: yes
 
 - name: restart nginx
   service:
     name=nginx
     enabled=yes
     state=restarted
+  sudo: yes
