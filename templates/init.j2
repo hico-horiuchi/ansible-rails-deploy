@@ -2,4 +2,5 @@
 
 cd {{ dest }}
 su {{ ansible_env.USER }} -c "RAILS_ENV=production bin/rake sidekiq:$1"
+su {{ ansible_env.USER }} -c "RAILS_ENV=production bin/rake websocket_rails:$1_server"
 su {{ ansible_env.USER }} -c "bin/unicorn $1"
