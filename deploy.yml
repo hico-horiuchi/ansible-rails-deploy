@@ -15,5 +15,6 @@
     - include: tasks/database.yml
     - include: tasks/assets.yml
     - include: tasks/init.yml
+    - include: tasks/envs.yml
     - include: tasks/service.yml
     - include: tasks/typetalk.yml

@@ -1,0 +1,9 @@
+---
+- name: check envs in .profile
+  shell: grep '# {{ project }} envs' {{ ansible_env.HOME }}/.profile
+  register: check_envs
+  ignore_errors: yes
+
+- name: add envs to .profile
+  shell: echo '\n# {{ project }} envs\nexport RAILS_ENV=production\nexport SECRET_KEY_BASE={{ secret_key_base }}' >> {{ ansible_env.HOME }}/.profile
+  when: check_envs|failed
