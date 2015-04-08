@@ -4,6 +4,10 @@ cd {{ dest }}
 
 ENVS="RAILS_ENV=production SECRET_KEY_BASE={{ secret_key_base }}"
 
+{% if sidekiq == 'true'%}
 sudo -u {{ ansible_env.USER }} -H ${ENVS} bundle exec rake sidekiq:${1}
+{% endif %}
+{% if websocket == 'true'%}
 sudo -u {{ ansible_env.USER }} -H ${ENVS} bundle exec rake websocket_rails:${1}_server
+{% endif %}
 sudo -u {{ ansible_env.USER }} -H ${ENVS} bin/unicorn ${1}

@@ -4,6 +4,8 @@ localhost
 [rails:vars]
 repo=git@github.com:who/sample.git
 project=sample
+sidekiq=true
+websocket=true
 db_password=hogehoge
 secret_key_base=abcdefghijklmnopqrstuvwxyz123456789abcdefghijklmnopqrstuvwxyz123456789abcdefghijklmnopqrstuvwxyz123456789abcdefghijklmnopqrstuvw
 typetalk_notify=true
