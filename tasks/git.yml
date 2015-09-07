@@ -5,3 +5,6 @@
     dest={{ dest }}
     accept_hostkey=yes
     force=yes
+    recursive=yes
+    track_submodules=yes
+    update=yes
